@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Orgmode quick notes</string>
+
+    <string name="appwidget_text">Title</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
+    <string name="save">Save</string>
+    <string name="provide_permissions_and_then_add_widget_to_desktop">Provide permissions and then add widget to desktop</string>
+    <string name="note_title">Note title</string>
+    <string name="note_text">Note text</string>
+    <string name="widget_hint">Widget hint</string>
+    <string name="file_path">File path</string>
+</resources>
