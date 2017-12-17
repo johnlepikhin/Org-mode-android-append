@@ -10,4 +10,10 @@
     <string name="note_text">Note text</string>
     <string name="widget_hint">Widget hint</string>
     <string name="file_path">File path</string>
+    <string-array name="note_states">
+        <item>TODO</item>
+        <item>none</item>
+        <item>DONE</item>
+        <item>WAIT</item>
+    </string-array>
 </resources>
