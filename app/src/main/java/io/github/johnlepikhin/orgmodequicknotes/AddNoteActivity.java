@@ -1,6 +1,7 @@
 package io.github.johnlepikhin.orgmodequicknotes;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
 
 public class AddNoteActivity extends Activity {
     private int widgetID;
@@ -76,8 +78,8 @@ public class AddNoteActivity extends Activity {
                         return;
                     }
                     Log.d("SAVE", "Use file_path: " + file_path);
-                    File file = new File(file_path);
-                    FileOutputStream stream = new FileOutputStream(file, true);
+                    OutputStream stream = getContentResolver().openOutputStream(Uri.parse(file_path), "wa");
+                    assert stream != null;
                     stream.write(output.getBytes());
                     stream.close();
                     title.getText().clear();

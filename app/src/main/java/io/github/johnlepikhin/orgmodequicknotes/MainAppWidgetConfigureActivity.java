@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,12 +14,14 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.net.URI;
 
 /**
  * The configuration screen for the {@link MainAppWidget MainAppWidget} AppWidget.
  */
 public class MainAppWidgetConfigureActivity extends Activity {
-
+    private static final int REQUEST_FILE_CODE = 42;
     private static final String PREFS_NAME = "io.github.johnlepikhin.orgmodequicknotes.MainAppWidget";
     private int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     private EditText mAppWidgetText;
@@ -29,8 +32,8 @@ public class MainAppWidgetConfigureActivity extends Activity {
 
             String file_path = mFilePath.getText().toString();
             try {
-                File file = new File(file_path);
-                FileOutputStream stream = new FileOutputStream(file, true);
+                OutputStream stream = getContentResolver().openOutputStream(Uri.parse(file_path), "wa");
+                assert stream != null;
                 stream.close();
             } catch (Exception e) {
                 Toast t = Toast.makeText(getApplicationContext(), "Cannot open file for appending", Toast.LENGTH_SHORT);
@@ -84,6 +87,13 @@ public class MainAppWidgetConfigureActivity extends Activity {
         mFilePath = findViewById(R.id.appwidget_file_path);
         findViewById(R.id.add_button).setOnClickListener(mOnClickListener);
 
+        mFilePath.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                performFileSearch();
+            }
+        });
+
         // Find the widget id from the intent.
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -103,5 +113,38 @@ public class MainAppWidgetConfigureActivity extends Activity {
             titleValue = "Org note";
         }
         mAppWidgetText.setText(titleValue);
+
+        performFileSearch();
+    }
+
+    public void performFileSearch() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("*/*");
+        startActivityForResult(intent, REQUEST_FILE_CODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode,
+                                 Intent resultData) {
+        if (requestCode == REQUEST_FILE_CODE && resultCode == Activity.RESULT_OK) {
+            Uri uri = null;
+            if (resultData != null) {
+                uri = resultData.getData();
+                if (uri == null) {
+                    Toast t = Toast.makeText(getApplicationContext(), "Cannot open file for appending", Toast.LENGTH_SHORT);
+                    t.show();
+                    return;
+                }
+                String file_path = uri.toString();
+                if (file_path == null) {
+                    Toast t = Toast.makeText(getApplicationContext(), "Cannot open file for appending", Toast.LENGTH_SHORT);
+                    t.show();
+                    return;
+                }
+                Log.i("FILE", "Uri: " + file_path);
+                mFilePath.setText(file_path);
+            }
+        }
     }
 }
