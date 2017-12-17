@@ -12,10 +12,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.OutputStream;
-import java.net.URI;
 
 /**
  * The configuration screen for the {@link MainAppWidget MainAppWidget} AppWidget.
@@ -117,7 +114,7 @@ public class MainAppWidgetConfigureActivity extends Activity {
         performFileSearch();
     }
 
-    public void performFileSearch() {
+    private void performFileSearch() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("*/*");
