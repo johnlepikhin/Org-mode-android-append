@@ -36,7 +36,8 @@
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddNoteActivity" />
+        <activity android:name=".AddNoteActivity"
+            android:windowSoftInputMode="stateVisible"/>
     </application>
 
 </manifest>

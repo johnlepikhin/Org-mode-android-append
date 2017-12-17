@@ -81,9 +81,6 @@ public class AddNoteActivity extends Activity {
 
         String titleValue = title.getText().toString();
         String textValue = text.getText().toString();
-        if (titleValue.isEmpty() && textValue.isEmpty()) {
-            return;
-        }
 
         MainAppWidgetConfigureActivity.putString(this, widgetID, "title_draft", titleValue)
                 .putString("text_draft", textValue)

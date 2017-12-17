@@ -15,7 +15,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:defaultFocusHighlightEnabled="false"
             android:ems="10"
+            android:focusedByDefault="true"
             android:hint="@string/note_title"
             android:inputType="text"
             android:singleLine="true" />
