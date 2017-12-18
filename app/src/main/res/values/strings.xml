@@ -16,4 +16,5 @@
         <item>DONE</item>
         <item>WAIT</item>
     </string-array>
+    <string name="action_save">Save</string>
 </resources>
