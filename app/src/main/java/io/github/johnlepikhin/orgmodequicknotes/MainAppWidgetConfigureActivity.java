@@ -110,8 +110,6 @@ public class MainAppWidgetConfigureActivity extends Activity {
             titleValue = "Org note";
         }
         mAppWidgetText.setText(titleValue);
-
-        performFileSearch();
     }
 
     private void performFileSearch() {
