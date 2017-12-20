@@ -9,4 +9,9 @@
         <item name="titleTextColor">@android:color/white</item>
     </style>
 
+    <style name="SpinnerStateItem" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

@@ -44,7 +44,7 @@ public class AddNoteActivity extends AppCompatActivity {
         text.setText(textValue, TextView.BufferType.EDITABLE);
         if (stateValue != null) {
             ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.note_states, android.R.layout.simple_spinner_item);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            adapter.setDropDownViewResource(R.layout.spinner_state_item);
             state.setAdapter(adapter);
             int spinnerPosition = adapter.getPosition(stateValue);
             state.setSelection(spinnerPosition);

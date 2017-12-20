@@ -27,10 +27,11 @@
 
             <Spinner
                 android:id="@+id/noteState"
-                android:layout_width="wrap_content"
+                android:layout_width="160dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:padding="0dp"
+                android:background="@android:drawable/btn_default"
                 android:typeface="monospace"
                 android:entries="@array/note_states" />
 
